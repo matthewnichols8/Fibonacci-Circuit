@@ -4,17 +4,17 @@
 * Date          :   8/9/2025
 -------------------------------------------------------------------------------------------------*/
 
-module gcd_tb_top;
+module fibonacci_tb_top;
 
     timeunit 1ns;
     timeprecision 100ps;
 
     import uvm_pkg::*;
     `include "uvm_macros.svh"
-    import gcd_test_pkg::*;
-    import gcd_seq_pkg::*;
-    import gcd_agent_pkg::*;
-    import gcd_env_pkg::*;
+    import fibonacci_test_pkg::*;
+    import fibonacci_seq_pkg::*;
+    import fibonacci_agent_pkg::*;
+    import fibonacci_env_pkg::*;
 
     logic clk = 0;
     logic rst = 0;
@@ -27,17 +27,17 @@ module gcd_tb_top;
     end
 
     // Interface instantiation
-    gcd_if if0(clk, rst);
+    fibonacci_if if0(clk, rst);
 
     // DUT instantiation
-    gcd dut(
+    fibonacci dut(
         .clk_i(clk),
         .rst_i(rst),
-        .valid_i(if0.valid_i),
-        .a_i(if0.a_i),
-        .b_i(if0.b_i),
-        .gcd_o(if0.gcd_o),
-        .valid_o(if0.valid_o));
+        .start(if0.start_i),
+        .i(if0.i_i),
+        .ready(if0.ready_o),
+        .done_tick(if0.done_tick_o),
+        .f(if0.f_o));
 
     initial begin
         // Initialize waveform dumping
@@ -45,8 +45,8 @@ module gcd_tb_top;
         $shm_probe("AS");
         // Store the virtual interface handle 'if0' in the UVM configuration database
         // under the field name "vif" so all components under uvm_root can access it.
-        uvm_config_db #(virtual gcd_if)::set(uvm_root::get(), "*", "vif", if0);
+        uvm_config_db #(virtual fibonacci_if)::set(uvm_root::get(), "*", "vif", if0);
         run_test();
     end
 
-endmodule : gcd_tb_top
+endmodule : fibonacci_tb_top
