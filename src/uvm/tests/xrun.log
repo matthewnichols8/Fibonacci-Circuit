@@ -1,0 +1,46 @@
+xrun(64): 25.03-s003: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	25.03-s003: Started on Oct 22, 2025 at 16:09:20 EDT
+xrun
+	gcd_test_lib.sv
+file: gcd_test_lib.sv
+class simple_gcd_test extends base_gcd_test;
+                                          |
+xmvlog: *E,SVNOTY (gcd_test_lib.sv,11|42): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+    `uvm_component_utils(simple_gcd_test)
+                       |
+xmvlog: *E,NOTDIR (gcd_test_lib.sv,14|23): `uvm_component_utils: not a recognized directive or macro [2.7.3][16.3.1][16(IEEE)].
+    `uvm_component_utils(simple_gcd_test)
+                        |
+xmvlog: *E,EXPENC (gcd_test_lib.sv,14|24): Expecting the keyword 'endclass'.
+    function new(string name = "simple_gcd_test", uvm_component parent=null);
+               |
+xmvlog: *E,NEWOIC (gcd_test_lib.sv,17|15): The class constructor method 'new' is only allowed within a class declaration.
+    function new(string name = "simple_gcd_test", uvm_component parent=null);
+                                                              |
+xmvlog: *E,EXPRPA (gcd_test_lib.sv,17|62): expecting a right parenthesis (')') [A.2.6(IEEE)].
+    function new(string name = "simple_gcd_test", uvm_component parent=null);
+                                                              |
+xmvlog: *E,NOIPRT (gcd_test_lib.sv,17|62): Unrecognized declaration 'uvm_component' of unknown type, which could be because of an unsupported keyword, a spelling mistake, non-visible type, or missing instance port list '()' [SystemVerilog].
+    function new(string name = "simple_gcd_test", uvm_component parent=null);
+                                                              |
+xmvlog: *E,NOTINF (gcd_test_lib.sv,17|62): Interfaces are not allowed within tasks [SystemVerilog].
+    function new(string name = "simple_gcd_test", uvm_component parent=null);
+                                                                      |
+xmvlog: *E,EXPSMC (gcd_test_lib.sv,17|70): expecting a semicolon (';') [12.3.2(IEEE)].
+        super.new(name,parent);
+            |
+xmvlog: *E,EXPRPA (gcd_test_lib.sv,18|12): expecting a right parenthesis (')') [A.2.6(IEEE)].
+    virtual function void build_phase(uvm_phase phase);
+                   |
+xmvlog: *E,BADQAL (gcd_test_lib.sv,22|19): Lifetime or qualifier(s) 'virtual' not allowed before function declaration.
+    virtual function void build_phase(uvm_phase phase);
+                                              |
+xmvlog: *E,SVNOTY (gcd_test_lib.sv,22|46): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+endclass : simple_gcd_test
+       |
+xmvlog: *E,MPANDC (gcd_test_lib.sv,31|7): expecting the keyword 'module', 'macromodule', 'primitive', 'connectmodule','connect', 'discipline' or 'nature' [A.1].
+xmvlog: *W,NOTOPL: no top-level unit found, must have recursive instances.
+	Total errors/warnings found outside modules and primitives:
+		errors: 12, warnings: 1
+xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
+TOOL:	xrun(64)	25.03-s003: Exiting on Oct 22, 2025 at 16:09:21 EDT  (total: 00:00:01)
