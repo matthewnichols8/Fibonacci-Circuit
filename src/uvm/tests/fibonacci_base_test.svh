@@ -4,13 +4,13 @@
 * Date          :   9/7/2025
 -------------------------------------------------------------------------------------------------*/
 
-class base_gcd_test extends uvm_test;
+class base_fibonacci_test extends uvm_test;
 
     // UVM Component Macro
-    `uvm_component_utils(base_gcd_test)
+    `uvm_component_utils(base_fibonacci_test)
 
     // Testbench handle
-    gcd_env env;
+    fibonacci_env env;
 
     // UVM Constructor
     function new(string name, uvm_component parent);
@@ -24,7 +24,7 @@ class base_gcd_test extends uvm_test;
         // Enable transaction recording for everything
         uvm_config_int::set(this, "*", "recording_detail", UVM_FULL);
         // Instantiate the testbench
-        env = gcd_env::type_id::create("env", this);
+        env = fibonacci_env::type_id::create("env", this);
     endfunction : build_phase
 
     // Run phase
@@ -55,4 +55,4 @@ class base_gcd_test extends uvm_test;
         check_config_usage();
     endfunction : check_phase
 
-endclass : base_gcd_test
+endclass : base_fibonacci_test
