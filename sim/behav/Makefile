@@ -5,12 +5,12 @@
 #--------------------------------------------------------------------
 
 # ===== User-configurable knobs =====================================
-TESTNAME        ?= all_gcd_test
+TESTNAME        ?= simple_fibonacci_test
 UVM_MAX_QUIT    ?= 1
 UVM_VERBOSITY   ?= UVM_FULL
 
 # Top level testbench
-TOPLEVEL        ?= gcd_tb_top
+TOPLEVEL        ?= fibonacci_tb_top
 
 # Define source directories relative to the project root
 SRC_DIRS := src/sv/rtl \
@@ -31,14 +31,14 @@ INC_DIRS := -incdir src/uvm/tests \
 			-incdir src/uvm/env \
 			-incdir src/uvm/tb
 
-SV_FILES := src/sv/rtl/gcd_pkg.sv \
-			src/sv/rtl/gcd.sv \
-			src/uvm/sequences/gcd_seq_pkg.sv \
-			src/uvm/agent/gcd_agent_pkg.sv \
-			src/uvm/env/gcd_env_pkg.sv \
-			src/uvm/tests/gcd_test_pkg.sv \
-			src/uvm/tb/gcd_if.sv \
-			src/uvm/tb/gcd_tb_top.sv \
+SV_FILES := src/sv/rtl/fibonacci_pkg.sv \
+			src/sv/rtl/fibonacci.sv \
+			src/uvm/sequences/fibonacci_seq_pkg.sv \
+			src/uvm/agent/fibonacci_agent_pkg.sv \
+			src/uvm/env/fibonacci_env_pkg.sv \
+			src/uvm/tests/fibonacci_test_pkg.sv \
+			src/uvm/tb/fibonacci_if.sv \
+			src/uvm/tb/fibonacci_tb_top.sv \
 
 VERILOG_DEFINES := +SIM=1
 
