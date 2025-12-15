@@ -8,10 +8,10 @@
 *   2. Define the basic UVM Constructor
 -------------------------------------------------------------------------------------------------*/
 
-class gcd_sequencer extends uvm_sequencer #(gcd_seq_item);
-    `uvm_component_utils(gcd_sequencer)
+class fibonacci_sequencer extends uvm_sequencer #(fibonacci_seq_item);
+    `uvm_component_utils(fibonacci_sequencer)
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
     endfunction
-endclass : gcd_sequencer
+endclass : fibonacci_sequencer
