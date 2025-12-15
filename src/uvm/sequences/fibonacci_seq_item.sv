@@ -9,14 +9,14 @@ class fibonacci_seq_item extends uvm_sequence_item;
     localparam TB_WIDTH = 5;
 
     // Data fields for the transaction
-    rand bit [TB_WIDTH-1:0] data_f;
+    rand bit [TB_WIDTH-1:0] data_i;
 
     bit [19:0] result_f;
 
     // UVM Component Macro
-    `uvm_object_utils_begin(gcd_seq_item)
+    `uvm_object_utils_begin(fibonacci_seq_item)
         // Register data fields for randomization and recording
-        `uvm_field_int(data_f, UVM_ALL_ON)
+        `uvm_field_int(data_i, UVM_ALL_ON)
         //`uvm_field_int(data_b, UVM_ALL_ON)
         `uvm_field_int(result_f, UVM_ALL_ON)
     `uvm_object_utils_end
@@ -27,6 +27,6 @@ class fibonacci_seq_item extends uvm_sequence_item;
     endfunction : new
 
     // Define desired constraints for randomization
-    constraint valid_inputs {data_f >= 0; data_f <= 31;}
+    constraint valid_inputs {data_i >= 0; data_i <= 31;}
 
 endclass : fibonacci_seq_item

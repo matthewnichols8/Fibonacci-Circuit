@@ -13,14 +13,14 @@
 * compare received with expected outputs
 -------------------------------------------------------------------------------------------------*/
 
-class gcd_sb extends uvm_scoreboard;
+class fibonacci_sb extends uvm_scoreboard;
 
     //`uvm_analysis_imp_decl(_component_a)
 
     //uvm_analysis_imp_component_a #(gcd_seq_item, gcd_sb) sb_component_a;
-    uvm_analysis_imp #(gcd_seq_item, gcd_sb) sb_component_a;
+    uvm_analysis_imp #(fibonacci_seq_item, fibonacci_sb) sb_component_a;
 
-    `uvm_component_utils(gcd_sb)
+    `uvm_component_utils(fibonacci_sb)
 
     function new (string name, uvm_component parent);
         super.new(name, parent);
@@ -30,22 +30,28 @@ class gcd_sb extends uvm_scoreboard;
     // Scoreboard statistics. You can optionally add more if you want
     int num_in, num_correct, num_incorrect;
 
-    // Golden function to compute GCD
-    function automatic bit [7:0] compute_gcd(bit [7:0] a, bit [7:0] b);
-        bit [7:0] x = a;
-        bit [7:0] y = b;
-        while (y != 0) begin
-            bit [7:0] temp = y;
-            y = x % y;
-            x = temp;
+    // Golden Fibonacci function
+    function automatic bit [19:0] compute_fibonacci(bit [5:0] n);
+        bit [19:0] a = 0;
+        bit [19:0] b = 1;
+        bit [19:0] next;
+
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+
+        for (int i = 2; i <= n; i++) begin
+            next = a + b;
+            a = b;
+            b = next;
         end
-        return x;
+
+        return b;
     endfunction
 
-    virtual function void write (gcd_seq_item tr);
+    virtual function void write (fibonacci_seq_item tr);
         `uvm_info(get_type_name(), "Recieved item in scoreboard", UVM_LOW)
         num_in++;
-        if (compute_gcd(tr.data_a, tr.data_b) != tr.result_gcd)
+        if (compute_fibonacci(tr.data_i) != tr.result_f)
             num_incorrect++;
         else
             num_correct++;
@@ -60,4 +66,4 @@ class gcd_sb extends uvm_scoreboard;
     endfunction : report_phase
 
 
-endclass : gcd_sb
+endclass : fibonacci_sb

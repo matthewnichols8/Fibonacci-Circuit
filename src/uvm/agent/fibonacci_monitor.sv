@@ -50,4 +50,4 @@ class fibonacci_monitor extends uvm_monitor;
         end
     endtask : run_phase
 
-endclass : gcd_monitor
+endclass : fibonacci_monitor

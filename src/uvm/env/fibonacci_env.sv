@@ -10,12 +10,12 @@
 *   4. Connect your monitor analysis port to the scoreboard analysis import
 -------------------------------------------------------------------------------------------------*/
 
-class gcd_env extends uvm_env;
+class fibonacci_env extends uvm_env;
 
-    gcd_agent agent;
-    gcd_sb scoreboard;
+    fibonacci_agent agent;
+    fibonacci_sb scoreboard;
 
-    `uvm_component_utils(gcd_env)
+    `uvm_component_utils(fibonacci_env)
 
     function new (string name, uvm_component parent);
         super.new(name, parent);
@@ -23,8 +23,8 @@ class gcd_env extends uvm_env;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        scoreboard = gcd_sb::type_id::create("scoreboard", this);
-        agent = gcd_agent::type_id::create("agent", this);
+        scoreboard = fibonacci_sb::type_id::create("scoreboard", this);
+        agent = fibonacci_agent::type_id::create("agent", this);
         //scoreboard = gcd_sb::type_id::create("scoreboard", this);
     endfunction : build_phase
 
@@ -32,4 +32,4 @@ class gcd_env extends uvm_env;
         agent.monitor.item_collected_port.connect(scoreboard.sb_component_a);
     endfunction : connect_phase
 
-endclass : gcd_env
+endclass : fibonacci_env
