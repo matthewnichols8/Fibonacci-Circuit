@@ -13,7 +13,7 @@ module fibonacci(
     logic [4:0] n_reg, n_next;
 
     // Register Logic
-    always_ff(@posedge clk) begin
+    always_ff @(posedge clk) begin
         if (rst) begin
             t0_reg <= '0;
             t1_reg <= '0;
@@ -28,7 +28,7 @@ module fibonacci(
     end
 
     //Next State Logic
-    always_comb() begin
+    always_comb @(*) begin
         state_next = state_reg;
         t0_next = t0_reg;
         t1_next = t1_reg;

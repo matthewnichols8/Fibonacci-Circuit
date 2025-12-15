@@ -1,0 +1,97 @@
+xrun(64): 25.03-s003: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	25.03-s003: Started on Dec 14, 2025 at 20:23:54 EST
+xrun
+	-uvmhome /tools/software/cadence/xcelium/latest/tools/methodology/UVM/CDNS-1.1d
+	-64bit
+	-sv
+	-linedebug
+	-access +rwc
+	-timescale 1ns/10ps
+	-coverage all
+	-licqueue
+	-covoverwrite
+	+UVM_MAX_QUIT_COUNT=1
+	+UVM_TESTNAME=simple_fibonacci_test
+	+UVM_VERBOSITY=UVM_FULL
+	+define++SIM=1
+	-incdir src/uvm/tests
+	-incdir src/uvm/agent
+	-incdir src/uvm/sequences
+	-incdir src/uvm/env
+	-incdir src/uvm/tb
+	src/sv/rtl/fibonacci_pkg.sv
+	src/sv/rtl/fibonacci.sv
+	src/uvm/sequences/fibonacci_seq_pkg.sv
+	src/uvm/agent/fibonacci_agent_pkg.sv
+	src/uvm/env/fibonacci_env_pkg.sv
+	src/uvm/tests/fibonacci_test_pkg.sv
+	src/uvm/tb/fibonacci_if.sv
+	src/uvm/tb/fibonacci_tb_top.sv
+	-top fibonacci_tb_top
+	-logfile simulation.log
+
+   User defined plus("+") options:
+	+UVM_MAX_QUIT_COUNT=1
+	+UVM_VERBOSITY=UVM_FULL
+
+xrun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /tools/software/cadence/xcelium/latest/tools/methodology/UVM/CDNS-1.1d
+file: src/sv/rtl/fibonacci.sv
+        case (state_reg) begin
+                             |
+xmvlog: *E,ILLPRI (src/sv/rtl/fibonacci.sv,37|29): illegal expression primary [4.2(IEEE)].
+            default: state_next = idle;
+                  |
+xmvlog: *E,NOTSTT (src/sv/rtl/fibonacci.sv,62|18): expecting a statement [9(IEEE)].
+        endcase
+              |
+xmvlog: *E,NOTSTT (src/sv/rtl/fibonacci.sv,64|14): expecting a statement [9(IEEE)].
+	module worklib.fibonacci:sv
+		errors: 3, warnings: 0
+file: src/uvm/agent/fibonacci_agent_pkg.sv
+            vif.i_i     <= data.i;
+                                |
+xmvlog: *E,NOTCLM (src/uvm/agent/fibonacci_driver.sv,38|32): i is not a class item.
+            collected_data.data_f = vif.f_o;
+                                |
+xmvlog: *E,NOTCLM (src/uvm/agent/fibonacci_monitor.sv,40|32): data_f is not a class item.
+                                                UVM_LOW)
+                                                       |
+xmvlog: *E,NOTCLM (src/uvm/agent/fibonacci_monitor.sv,48|55): data_f is not a class item.
+	package worklib.fibonacci_agent_pkg:sv
+		errors: 3, warnings: 0
+file: src/uvm/env/fibonacci_env_pkg.sv
+  import fibonacci_agent_pkg::*;
+                           |
+xmvlog: *E,NOPBIND (src/uvm/env/fibonacci_env_pkg.sv,6|27): Package fibonacci_agent_pkg could not be bound.
+    fibonacci_agent agent;
+                  |
+xmvlog: *E,NOIPRT (src/uvm/env/fibonacci_env.sv,15|18): Unrecognized declaration 'fibonacci_agent' of unknown type, which could be because of an unsupported keyword, a spelling mistake, non-visible type, or missing instance port list '()' [SystemVerilog].
+	package worklib.fibonacci_env_pkg:sv
+		errors: 2, warnings: 0
+file: src/uvm/tests/fibonacci_test_pkg.sv
+  import fibonacci_env_pkg::*;
+                         |
+xmvlog: *E,NOPBIND (src/uvm/tests/fibonacci_test_pkg.sv,5|25): Package fibonacci_env_pkg could not be bound.
+    fibonacci_env env;
+                |
+xmvlog: *E,NOIPRT (src/uvm/tests/fibonacci_base_test.svh,13|16): Unrecognized declaration 'fibonacci_env' of unknown type, which could be because of an unsupported keyword, a spelling mistake, non-visible type, or missing instance port list '()' [SystemVerilog].
+	package worklib.fibonacci_test_pkg:sv
+		errors: 2, warnings: 0
+file: src/uvm/tb/fibonacci_tb_top.sv
+    import fibonacci_test_pkg::*;
+                            |
+xmvlog: *E,NOPBIND (src/uvm/tb/fibonacci_tb_top.sv,14|28): Package fibonacci_test_pkg could not be bound.
+    import fibonacci_agent_pkg::*;
+                             |
+xmvlog: *E,NOPBIND (src/uvm/tb/fibonacci_tb_top.sv,16|29): Package fibonacci_agent_pkg could not be bound.
+    import fibonacci_env_pkg::*;
+                           |
+xmvlog: *E,NOPBIND (src/uvm/tb/fibonacci_tb_top.sv,17|27): Package fibonacci_env_pkg could not be bound.
+	module worklib.fibonacci_tb_top:sv
+		errors: 3, warnings: 0
+xmvlog: *W,SPDUSD: Include directory src/uvm/tb given but not used.
+	Total errors/warnings found outside modules and primitives:
+		errors: 0, warnings: 1
+xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
+TOOL:	xrun(64)	25.03-s003: Exiting on Dec 14, 2025 at 20:23:55 EST  (total: 00:00:01)
