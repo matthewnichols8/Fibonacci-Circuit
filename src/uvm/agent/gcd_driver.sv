@@ -10,11 +10,11 @@
 *   4. Define the logic to drive transaction signals onto the DUT (run_phase)
 -------------------------------------------------------------------------------------------------*/
 
-class gcd_driver extends uvm_driver #(gcd_seq_item);
+class fibonacci_driver extends uvm_driver #(fibonacci_seq_item);
 
-    `uvm_component_utils(gcd_driver)
+    `uvm_component_utils(fibonacci_driver)
 
-    virtual interface gcd_if vif;
+    virtual interface fibonacci_if vif;
 
     function new (string name, uvm_component parent);
         super.new(name, parent);
@@ -22,28 +22,27 @@ class gcd_driver extends uvm_driver #(gcd_seq_item);
 
     virtual function void connect_phase(uvm_phase phase);
         super.build_phase(phase);
-        if (! gcd_vif_config::get(this, "", "vif", vif))
+        if (! fibonacci_vif_config::get(this, "", "vif", vif))
             `uvm_fatal(get_type_name(), "Didnt get handle to virtual interface vif")
     endfunction : connect_phase
 
     virtual task run_phase(uvm_phase phase);
-        gcd_seq_item data;
+        fibonacci_seq_item data;
         super.run_phase(phase);
        // Gets packets from the sequencer and passes them to the driver. 
         forever begin
             // Get new item from the sequencer
             seq_item_port.get_next_item(data);
             // Drive the item
-            vif.valid_i <= 1'b1;
-            vif.a_i     <= data.data_a;
-            vif.b_i     <= data.data_b;
+            vif.start_i <= 1'b1;
+            vif.i_i     <= data.i;
             @(posedge vif.clk_i);
-            vif.valid_i <= 1'b0;
-            do @(posedge vif.clk_i); while (vif.valid_o !== 1'b1);
-            vif.gcd_o   <= data.result_gcd;
+            //vif.valid_i <= 1'b0;
+            do @(posedge vif.clk_i); while (vif.done_tick_o !== 1'b1);
+            vif.f_o   <= data.result_f;
             // Communicate item done to the sequencer
             seq_item_port.item_done();
         end
     endtask : run_phase
 
-endclass : gcd_driver
+endclass : fibonacci_driver

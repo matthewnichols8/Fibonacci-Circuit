@@ -4,15 +4,15 @@
 * Date          :   9/7/2025
 -------------------------------------------------------------------------------------------------*/
 
-class base_gcd_seq extends uvm_sequence #(gcd_seq_item);
+class base_fibonacci_seq extends uvm_sequence #(fibonacci_seq_item);
 
-    gcd_seq_item seq;
+    fibonacci_seq_item seq;
 
     // UVM Component Macro
-    `uvm_object_utils(base_gcd_seq)
+    `uvm_object_utils(base_fibonacci_seq)
 
     // UVM Constructor
-    function new(string name = "base_gcd_seq");
+    function new(string name = "base_fibonacci_seq");
         super.new(name);
     endfunction : new
 
@@ -52,4 +52,4 @@ class base_gcd_seq extends uvm_sequence #(gcd_seq_item);
         end
     endtask : post_body
 
-endclass : base_gcd_seq
+endclass : base_fibonacci_seq

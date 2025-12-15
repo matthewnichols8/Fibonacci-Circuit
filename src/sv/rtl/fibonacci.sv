@@ -36,6 +36,7 @@ module fibonacci(
         done_tick = 1'b0;
         case (state_reg) begin
             idle: begin
+                ready = 1'b1;
                 if (start) begin
                     t0_next = '0;
                     t1_next = 20'd1;
